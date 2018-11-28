@@ -16,7 +16,7 @@ def anagram(input)
   filtered.each { |a| print a }
 end
 
-anagram(words)
+# anagram(words)
 
 # Anagram? True or False?
 
@@ -24,7 +24,7 @@ def anagram?(a, b)
   a.chars.sort == b.chars.sort
 end
 
-print anagram?('listen', 'silent')
+# print anagram?('listen', 'silent')
 
 # Bonus
 
@@ -32,14 +32,11 @@ def anagram_hash(input)
   list = {} # empty hash
   input.each do |word| # iterates over each word in the array
     add_word = word.chars.sort.join # sorts the anagrams
-    if list[add_word]
-      # anagrams are added to the hash
-      list[add_word] << word
-    else
-      # adds the word in a single array
-      list[add_word] = [word]
-    end
+    list[add_word] ||= []
+    list[add_word] << word
   end
   # list of all anagrams and words
   list.values
 end
+
+print anagram_hash(words).first(10)
